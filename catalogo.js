@@ -20,6 +20,7 @@ function verificacion(continuar) {
         alert("gracias por su visita");
         mostrarProductos("esto son los productos en su carrito ",carrito);
         alert(`y el total es: $${precio}`);
+       
         
     }
 }
@@ -37,8 +38,7 @@ function comprar(lista, carrito) {
             verificacion(continuar);
         }
     }
-   
-    alert(mensaje);  
+    verificacion(continuar);
 }
 confirmacion(continuar);
 
