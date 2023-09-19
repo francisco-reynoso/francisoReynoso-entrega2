@@ -10,7 +10,11 @@ lista.push(new Producto("212 vip", "carolina herrera", 90000));
 lista.push(new Producto("stronger with you", "giorgio armani", 89000));
 lista.push(new Producto("aventus", "cred", 200000));
 
-function mostrarProductos(mensaje,lista) {
+function mostrarProductos(mensaje,lista, total,mostrar) {
     const misProductos = lista.map((productos) =>  (`${productos.nombre} $${productos.precio}`));
-    alert(`${mensaje}:\n${misProductos.join("\n")}`)
+    if(mostrar)
+        alert(`${mensaje}:\n${misProductos.join("\n")}\nTotal: $${total}`)
+    else
+        alert(`${mensaje}:\n${misProductos.join("\n")}`)
+
 }

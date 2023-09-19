@@ -1,8 +1,8 @@
 alert("Bienvenidos a mi perfumeria");
-let continuar = prompt("Desea comprar algo").toLocaleLowerCase();
+let continuar = prompt("Desea comprar algo").toLowerCase().trim();
 const carrito = [];
-
-
+let total;
+let mostrar = false;
 
 
 function confirmacion(continuar) {
@@ -11,33 +11,36 @@ function confirmacion(continuar) {
 
 function verificacion(continuar) {
     while(continuar !="si" && continuar != "no") {
-        continuar = prompt('ingrese "si" o "no" para continuar');
+        continuar = prompt('ingrese "si" o "no" para continuar').toLowerCase().trim();
     }
     if (continuar == "si") {
-        mostrarProductos("estos son los productos disponibles",lista);
+        mostrarProductos("estos son los productos disponibles",lista,total,false);
         comprar(lista);
     }
-    else if (continuar == "no"){
+    else if (continuar == "no" && carrito.length != 0){
+        mostrar = true;
+        mostrarProductos("esto son los productos en su carrito ",carrito, total,true); 
         alert("gracias por su visita");
-        mostrarProductos("esto son los productos en su carrito ",carrito); 
-        
+    }
+    else{
+        alert("gracias por su visita");
     }
 }
 
 function comprar(lista) {
-    let pedido = prompt("ingrese lo que quiera comprar").toLocaleLowerCase();
+    let pedido = prompt("ingrese lo que quiera comprar").toLowerCase().trim();
     let mensaje = ("el perfume no fue encontrado");
     const result = lista.find((ele) => ele.nombre == pedido);
     if (result != undefined  ) {
         carrito.push(new Producto(result.nombre, result.marca, result.precio));
-        total = lista.reduce((acumulador) => acumulador + result.precio, 0);
+        total = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
         alert("el perfume fue añadido al carrito");
-        continuar = prompt("¿desea comprar algo mas?");
+        continuar = prompt("¿desea comprar algo mas?").toLowerCase().trim();
         verificacion(continuar);
     }
     else{
         alert ( mensaje);
-        continuar = prompt("¿desea intentar con otro perfume?");
+        continuar = prompt("¿desea intentar con otro perfume?").toLowerCase().trim();
         verificacion(continuar);
     }
 }
@@ -45,25 +48,6 @@ confirmacion(continuar);
 
 
 
-// for (const producto of lista) {
-//     if(pedido == producto.nombre) {
-//         carrito.push(new Producto(producto.nombre, producto.marca, producto.precio));
-//         mensaje = ("el perfume fue añadido al carrito");
-//         precio += producto.precio;
-//         alert(`se añadio ${producto.nombre} y su precio es ${producto.precio}`);
-//         continuar = prompt("¿desea comprar algo mas?");
-//         verificacion(continuar);
-//     }
-// }
-// verificacion(continuar);
 
-
-    
-// do{
-//     continuar = prompt("¿desea hacer otra compra?").toLocaleLowerCase();
-//     if(continuar !="si" && continuar != "no") {
-//         continuar = prompt('ingrese "si" o "no"');
-//     }
-// } while (continuar == "si");       
 
 
