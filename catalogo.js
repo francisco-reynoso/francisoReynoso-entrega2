@@ -19,7 +19,7 @@ function verificacion(continuar) {
     }
     else if (continuar == "no" && carrito.length != 0){
         mostrar = true;
-        mostrarProductos("esto son los productos en su carrito ",carrito, total,true); 
+        mostrarProductos("estos son los productos en su carrito ",carrito, total,true); 
         alert("gracias por su visita");
     }
     else{
@@ -28,14 +28,14 @@ function verificacion(continuar) {
 }
 
 function comprar(lista) {
-    let pedido = prompt("ingrese lo que quiera comprar").toLowerCase().trim();
+    let pedido = prompt("para comprar ingrese el nombre del perfume").toLowerCase().trim();
     let mensaje = ("el perfume no fue encontrado");
     const result = lista.find((ele) => ele.nombre == pedido);
     if (result != undefined  ) {
         carrito.push(new Producto(result.nombre, result.marca, result.precio));
         total = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
         alert("el perfume fue añadido al carrito");
-        continuar = prompt("¿desea comprar algo mas?").toLowerCase().trim();
+        continuar = prompt("¿desea comprar mas?").toLowerCase().trim();
         verificacion(continuar);
     }
     else{
